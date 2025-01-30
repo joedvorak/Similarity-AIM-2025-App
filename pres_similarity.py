@@ -195,8 +195,7 @@ with st.expander("Similarity Metric Descriptions"):
     st.markdown(r'- $SSS(s_j, s_m)$ is the Session-Session Similarity between session $s_j$ and session $s_m$,')
     st.markdown(r'- $|s_j|$ is the number of presentations in session $s_j$,')
     st.markdown(r'- $|s_m|$ is the number of presentations in session $s_m$, and')
-    st.markdown(r'- $\sum_{p_i \in s_j} \sum_{p_k \in s_m}$ is the sum of the cosine similarities over all pairs of presentations, where $p_i$ belongs to session $s_j$ and $p_k$ belongs to session $s_m$, and')
-    st.markdown(r'- $sim(p_i, p_k)$ is the cosine similarity between presentation $p_i$ and presentation $p_k$.')
+    st.markdown(r'- $\sum_{p_i \in s_j} \sum_{p_k \in s_m}$ is the sum of the cosine similarities over all pairs of presentations, where $p_i$ belongs to session $s_j$ and $p_k$ belongs to session $s_m$.')
 pres_session_similarity, session_similarity = calculate_cluster_similarities(df_similarity.to_numpy(), np.array(df_presentations['Original Session']))
 df_presentations['Presentation-Session Similarity'] = pres_session_similarity
 df_presentations['Session Similarity'] = df_presentations['Original Session'].map(session_similarity)
