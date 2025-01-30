@@ -103,8 +103,8 @@ if "password_correct" in st.session_state:
     else:
         st.error("😕 Password incorrect")
 
-st.subheader("DATE: January 23, 2025")
-st.write("**NOTE:** ***This sort is based on titles, abstracts and session placement from January 23, 2025.***")
+st.subheader("DATE: January 29, 2025")
+st.write("**NOTE:** ***This sort is based on titles, abstracts and session placement from January 29, 2025.***")
 
 # Load DataFrames
 # Returns True if the password is validated.
