@@ -103,8 +103,8 @@ if "password_correct" in st.session_state:
     else:
         st.error("😕 Password incorrect")
 
-st.subheader("DATE: March 12, 2025")
-st.write("**NOTE:** ***This sort is based on titles, abstracts and session placement from March 12, 2025.***")
+st.subheader("DATE: May 20, 2025")
+st.write("**NOTE:** ***This sort is based on titles, abstracts and session placement from May 20, 2025.***")
 
 # Load DataFrames
 # Returns True if the password is validated.
@@ -115,8 +115,7 @@ else:
     df_presentations = pd.read_pickle("df_pres_basic.pkl")
 
 model = st.radio("Select embedding model to use:",
-                 ['nomic-embed-text-v1.5',
-                  'cde-small-v1',
+                 ['cde-small-v1',
                   'all-mpnet-base-v2',
                   'all-MiniLM-L6-v2'],
                   horizontal=True,
@@ -127,21 +126,18 @@ if model == 'all-MiniLM-L6-v2':
 elif model == 'all-mpnet-base-v2':
     df_similarity = pd.read_pickle("mpnet_similarities.pkl")
     df_session_similarity = pd.read_pickle('mpnet_session_similarities.pkl') 
-elif model == 'cde-small-v1':
+else:
     df_similarity = pd.read_pickle("cde_similarities.pkl")
     df_session_similarity = pd.read_pickle('cde_session_similarities.pkl')
-else:
-    df_similarity = pd.read_pickle("nomic_similarities.pkl")
-    df_session_similarity = pd.read_pickle('nomic_session_similarities.pkl')
 
 st.write("cde-small-v1 is the default model. Others are provided for comparison.")
 with st.expander("Model Information"):
     st.write("Each model has differences in embedding to capture meaning and in the amount of text that they can process. The nomic-embed-text-v1.5 model processes the entire title and abstract. The cde-small-v1 model has the highest quality scores.")
     st.markdown("""
-        |                                                                             | nomic-embed-text-v1.5 | cde-small-v1 | all-mpnet-base-v2 | all-MiniLM-L6-v2 |
-        |-----------------------------------------------------------------------------|-----------------------|--------------|-------------------|------------------|
-        | **Maximum Input Tokens**                                                    | 8192                  | 512          | 384               | 256              |
-        | **[MTEB Clustering Score](https://huggingface.co/spaces/mteb/leaderboard)** |     43.93             |     48.32    |     43.69         |     41.94        |""")
+        |                                                                             | cde-small-v1 | all-mpnet-base-v2 | all-MiniLM-L6-v2 |
+        |-----------------------------------------------------------------------------|--------------|-------------------|------------------|
+        | **Maximum Input Tokens**                                                    | 512          | 384               | 256              |
+        | **[MTEB Clustering Score](https://huggingface.co/spaces/mteb/leaderboard)** |     48.32    |     43.69         |     41.94        |""")
     st.write("For oral presentations at ASABE AIM 2024, the Title and Abstract length distribution (in tokens):") 
     st.markdown("""
         | Minimum | 25th Percentile | Median | Mean | 75th Percentile | Maximum |
