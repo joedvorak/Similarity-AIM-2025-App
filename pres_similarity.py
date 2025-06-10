@@ -119,7 +119,7 @@ model = st.radio("Select embedding model to use:",
                   'all-mpnet-base-v2',
                   'all-MiniLM-L6-v2'],
                   horizontal=True,
-                  index = 1)
+                  index = 0)
 if model == 'all-MiniLM-L6-v2':
     df_similarity = pd.read_pickle("miniLM_similarities.pkl")
     df_session_similarity = pd.read_pickle("miniLM_session_similarities.pkl")
